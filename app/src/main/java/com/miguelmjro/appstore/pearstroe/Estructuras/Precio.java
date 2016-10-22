@@ -4,22 +4,22 @@ package com.miguelmjro.appstore.pearstroe.Estructuras;
  * Created by miguel on 21/10/16.
  */
 public class Precio {
-    double aumont;
+    double amount;
     String currencyCode;
     String etiqueta;
 
-    public Precio(double aumont, String currencyCode, String etiqueta) {
-        this.aumont = aumont;
+    public Precio(double amount, String currencyCode, String etiqueta) {
+        this.amount = amount;
         this.currencyCode = currencyCode;
         this.etiqueta = etiqueta;
     }
 
     public double getAumont() {
-        return aumont;
+        return amount;
     }
 
     public void setAumont(double aumont) {
-        this.aumont = aumont;
+        this.amount = aumont;
     }
 
     public String getCurrencyCode() {

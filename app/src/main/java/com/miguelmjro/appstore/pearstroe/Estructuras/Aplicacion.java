@@ -12,7 +12,8 @@ public class Aplicacion {
     Artista artista;
     Precio precio;
 
-    public Aplicacion(String name, String summary, String title, Imagen[] imagen, Categoria categoria, Artista artista, Precio precio) {
+    public Aplicacion(String name, String summary, String title, Imagen[] imagen,
+                      Categoria categoria, Artista artista, Precio precio) {
         this.name = name;
         this.summary = summary;
         this.title = title;
