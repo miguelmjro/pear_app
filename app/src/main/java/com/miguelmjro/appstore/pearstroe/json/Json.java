@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -27,10 +28,10 @@ public class Json {
             e.printStackTrace();
         }
     }
-    public Aplicacion[] getAplicaciones(){
-        Aplicacion[] apps=null;
+    public List<Aplicacion> getAplicaciones(){
+        List<Aplicacion> vec=null;
         try {
-            Vector<Aplicacion> vec=new Vector<Aplicacion>();
+        vec=new Vector<Aplicacion>();
             raiz =jsObject.getJSONObject("feed");
             aplicaciones = raiz.getJSONArray("entry");
             for (int i=0; i < aplicaciones.length(); i++)
@@ -74,14 +75,10 @@ public class Json {
                 }
                 vec.add(new Aplicacion( name, summary, title, imagen, categoria, artista,  precio));
             }
-            apps=new Aplicacion[vec.size()];
-            for (int i=0;i<vec.size();i++){
-                apps[i]=vec.get(i);
-            }
         } catch (JSONException e) {
             e.printStackTrace();
-            apps=null;
+            vec=null;
         }
-        return apps;
+        return vec;
     }
 }

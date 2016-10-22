@@ -1,5 +1,6 @@
 package com.miguelmjro.appstore.pearstroe.Estructuras;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
 /**
@@ -8,7 +9,7 @@ import android.media.Image;
 public class Imagen {
     String url;
     int altura;
-    Image imagen;
+    Bitmap imagen;
     boolean descargada;
     public Imagen(String url,int altura){
         this.url=url;
@@ -33,11 +34,11 @@ public class Imagen {
         this.altura = altura;
     }
 
-    public Image getImagen() {
+    public Bitmap getImagen() {
         return imagen;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 
