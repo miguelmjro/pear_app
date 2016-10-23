@@ -35,8 +35,7 @@ public class Descargas extends AsyncTask<Imagen, Integer, String> {
             }catch(IOException e) {
                 System.out.println("Error cargando la imagen: "+e.getMessage());
                 loadedImage=null;
-
-                oimagen.setDescargada(false);
+                oimagen.setImagen(loadedImage);
             }
         return "carga terminada";
 
@@ -44,7 +43,6 @@ public class Descargas extends AsyncTask<Imagen, Integer, String> {
     protected void onPostExecute(String bytes) {
         imagen.setImageBitmap(loadedImage);
         oimagen.setImagen(loadedImage);
-        oimagen.setDescargada(true);
 
     }
 
