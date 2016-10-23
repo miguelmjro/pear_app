@@ -2,6 +2,7 @@ package com.miguelmjro.appstore.pearstroe.dbo;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -20,9 +21,14 @@ public class DAOBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+DAOArtista.NOMBRE_TABLA);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+DAOAplicacion.NOMBRE_TABLA);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+DAOCategoria.NOMBRE_TABLA);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+DAOImagen.NOMBRE_TABLA);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+DAOMoneda.NOMBRE_TABLA);
         sqLiteDatabase.execSQL("CREATE TABLE " + DAOArtista.NOMBRE_TABLA + " ("
                 + DAOArtista._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +DAOArtista.ID + "TEXT NOT NULL,"
+                +DAOArtista.ID + " TEXT NOT NULL,"
                 + DAOArtista.NAME + " TEXT NOT NULL,"
                 + DAOArtista.PAGINA + " TEXT NOT NULL,"
                 + "UNIQUE (" + DAOArtista.ID + "),"
@@ -30,7 +36,7 @@ public class DAOBase extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + DAOCategoria.NOMBRE_TABLA + " ("
                 + DAOCategoria._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + DAOCategoria.ID + "TEXT NOT NULL,"
+                + DAOCategoria.ID + " TEXT NOT NULL,"
                 + DAOCategoria.LABEL + " TEXT NOT NULL,"
                 + DAOCategoria.SCHEME + " TEXT NOT NULL,"
                 + DAOCategoria.TERM + " TEXT NOT NULL,"
@@ -38,13 +44,13 @@ public class DAOBase extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + DAOMoneda.NOMBRE_TABLA + " ("
                 + DAOMoneda._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + DAOMoneda.ID + "TEXT NOT NULL,"
+                + DAOMoneda.ID + " TEXT NOT NULL,"
                 + DAOMoneda.CURRENCYCODE + " TEXT NOT NULL,"
                 + "UNIQUE (" + DAOMoneda.ID + "))");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + DAOAplicacion.NOMBRE_TABLA + " ("
                 + DAOAplicacion._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + DAOAplicacion.ID + "TEXT NOT NULL,"
+                + DAOAplicacion.ID + " TEXT NOT NULL,"
                 + DAOAplicacion.NAME + " TEXT NOT NULL,"
                 + DAOAplicacion.SUMMARY + " TEXT NOT NULL,"
                 + DAOAplicacion.TITLE + " TEXT NOT NULL,"
@@ -62,7 +68,7 @@ public class DAOBase extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + DAOImagen.NOMBRE_TABLA + " ("
                 + DAOImagen._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + DAOImagen.ID + "TEXT NOT NULL,"
+                + DAOImagen.ID + " TEXT NOT NULL,"
                 + DAOImagen.ALTURA + " INTEGER NOT NULL,"
                 + DAOImagen.IMAGEN + " BLOB NOT NULL,"
                 + DAOImagen.APLICACION + " INTEGER NOT NULL,"
@@ -75,6 +81,15 @@ public class DAOBase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public void cuentaAplicaciones(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor mCount= db.rawQuery("select count(*) from "+DAOAplicacion.NOMBRE_TABLA, null);
+        mCount.moveToFirst();
+        int count= mCount.getInt(0);
+        mCount.close();
+        System.out.println("Aplicaicones"+count);
     }
 
 }
