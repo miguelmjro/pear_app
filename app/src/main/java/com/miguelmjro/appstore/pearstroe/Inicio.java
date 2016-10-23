@@ -15,11 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.miguelmjro.appstore.pearstroe.Estructuras.Aplicacion;
 import com.miguelmjro.appstore.pearstroe.json.Json;
+
+import java.util.List;
 
 public class Inicio extends AppCompatActivity
        /* implements NavigationView.OnNavigationItemSelectedListener */{
     String json=null;
+    List<Aplicacion> apps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,9 @@ public class Inicio extends AppCompatActivity
             this.json=json;
         }
         Json oJson=new Json(this.json);
+        apps= oJson.getAplicaciones();
         TextView tv_json=(TextView)findViewById(R.id.respuesta);
-        tv_json.setText(json);
+        tv_json.setText(apps.get(1).getTitle()+"\n\n"+apps.get(1).getSummary());
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //navigationView.setNavigationItemSelectedListener(this);

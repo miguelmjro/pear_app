@@ -2,8 +2,7 @@ package com.miguelmjro.appstore.pearstroe.Fragmentos;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
+import android.app.ListFragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.miguelmjro.appstore.pearstroe.Estructuras.Aplicacion;
 import com.miguelmjro.appstore.pearstroe.R;
-import com.miguelmjro.appstore.pearstroe.Fragmentos.dummy.DummyContent;
 import com.miguelmjro.appstore.pearstroe.Fragmentos.dummy.DummyContent.DummyItem;
 
 import java.util.List;
