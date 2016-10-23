@@ -73,9 +73,8 @@ public class AdaptadorAplicaciones extends BaseAdapter {
         Imagen imagen=row_pos.getImagen()[2];
         txtTitle.setText(row_pos.getName());
         imgIcon.setImageBitmap(imagen.getImagen());
-        if(!imagen.isDescargada()&&imgIcon.hashCode()!=codigohash){
+        if(imagen.getImagen()==null&&imgIcon.hashCode()!=codigohash){
             codigohash=imgIcon.hashCode();
-            imagen.setDescargada(true);
             Descargas des= new Descargas();
             des.setImagen(imgIcon);
             des.execute(imagen);

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import 	android.os.Handler;
 import android.text.Html;
 
+import com.miguelmjro.appstore.pearstroe.dbo.DAOBase;
 import com.miguelmjro.appstore.pearstroe.tareas.LlamadoWS;
 
 import java.net.URL;
@@ -26,5 +27,6 @@ public class Splash extends AppCompatActivity {
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new LlamadoWS(Splash.this).execute("https://itunes.apple.com/us/rss/topfreeapplications/limit=20/json");
+        DAOBase base=new DAOBase(this);
     }
 }
