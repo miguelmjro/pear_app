@@ -2,53 +2,37 @@ package com.miguelmjro.appstore.pearstroe;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.support.v4.app.FragmentActivity;
 
 import com.miguelmjro.appstore.pearstroe.Estructuras.Aplicacion;
+import com.miguelmjro.appstore.pearstroe.Fragmentos.AplicacionesFragment;
 import com.miguelmjro.appstore.pearstroe.json.Json;
 
 import java.util.List;
 
-public class Inicio extends AppCompatActivity
-       /* implements NavigationView.OnNavigationItemSelectedListener */{
-    String json=null;
+public class Inicio extends FragmentActivity
+       /* implements NavigationView.OnNavigationItemSelectedListener */ {
+    String json = null;
     List<Aplicacion> apps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
         Intent intent = getIntent();
         String json = intent.getExtras().getString("json");
-        if(json!=null){
-            this.json=json;
+        if (json != null) {
+            this.json = json;
         }
-        Json oJson=new Json(this.json);
-        apps= oJson.getAplicaciones();
-        TextView tv_json=(TextView)findViewById(R.id.respuesta);
-        tv_json.setText(apps.get(1).getTitle()+"\n\n"+apps.get(1).getSummary());
+        Json oJson = new Json(this.json);
+        apps = oJson.getAplicaciones();
+        AplicacionesFragment frag=(AplicacionesFragment)getSupportFragmentManager().findFragmentById(R.id.list_fragment);
+        frag.setAplicaciones(apps);
+//        TextView tv_json=(TextView)findViewById(R.id.respuesta);
+//        tv_json.setText(apps.get(1).getTitle()+"\n\n"+apps.get(1).getSummary());
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //navigationView.setNavigationItemSelectedListener(this);
     }
 

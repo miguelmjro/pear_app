@@ -12,11 +12,9 @@
     tools:context="com.miguelmjro.appstore.pearstroe.Inicio"
     tools:showIn="@layout/app_bar_inicio">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/respuesta"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <fragment android:name="com.miguelmjro.appstore.pearstroe.Fragmentos.AplicacionesFragment"
+        android:id="@+id/headlines_fragment"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
 </RelativeLayout>

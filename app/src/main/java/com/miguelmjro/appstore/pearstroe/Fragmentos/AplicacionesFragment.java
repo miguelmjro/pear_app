@@ -2,7 +2,8 @@ package com.miguelmjro.appstore.pearstroe.Fragmentos;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.app.ListFragment;
+
+import android.support.v4.app.ListFragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -69,13 +70,18 @@ public class AplicacionesFragment extends ListFragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            this.setListAdapter(new AdaptadorAplicaciones(getActivity(), aplicaciones));
         }
         return view;
     }
 
+    public List<Aplicacion> getAplicaciones() {
+        return aplicaciones;
+    }
 
-
+    public void setAplicaciones(List<Aplicacion> aplicaciones) {
+        this.aplicaciones = aplicaciones;
+        this.setListAdapter(new AdaptadorAplicaciones(getActivity(), this.aplicaciones));
+    }
 
     /**
      * This interface must be implemented by activities that contain this
