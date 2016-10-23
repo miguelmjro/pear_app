@@ -2,6 +2,8 @@ package com.miguelmjro.appstore.pearstroe.Fragmentos;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.miguelmjro.appstore.pearstroe.Estructuras.Aplicacion;
+import com.miguelmjro.appstore.pearstroe.Estructuras.Imagen;
 import com.miguelmjro.appstore.pearstroe.Fragmentos.dummy.DummyContent.DummyItem;
 import com.miguelmjro.appstore.pearstroe.R;
+import com.miguelmjro.appstore.pearstroe.tareas.Descargas;
 
 import java.util.List;
 
@@ -25,10 +29,11 @@ public class AdaptadorAplicaciones extends BaseAdapter {
 
     Context context;
     List<Aplicacion> rowItem;
-
+    private int codigohash;
     public AdaptadorAplicaciones(Context context, List<Aplicacion> rowItem) {
         this.context = context;
         this.rowItem = rowItem;
+        codigohash=0;
 
     }
 
@@ -64,8 +69,18 @@ public class AdaptadorAplicaciones extends BaseAdapter {
 
         Aplicacion row_pos = rowItem.get(position);
         // setting the image resource and title
-        imgIcon.setImageBitmap(row_pos.getImagen()[0].getImagen());
+
+        Imagen imagen=row_pos.getImagen()[2];
         txtTitle.setText(row_pos.getName());
+        imgIcon.setImageBitmap(imagen.getImagen());
+        if(!imagen.isDescargada()&&imgIcon.hashCode()!=codigohash){
+            codigohash=imgIcon.hashCode();
+            imagen.setDescargada(true);
+            Descargas des= new Descargas();
+            des.setImagen(imgIcon);
+            des.execute(imagen);
+        }
+
 
         return convertView;
 

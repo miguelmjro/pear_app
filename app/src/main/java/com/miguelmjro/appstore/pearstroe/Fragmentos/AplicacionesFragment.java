@@ -1,6 +1,8 @@
 package com.miguelmjro.appstore.pearstroe.Fragmentos;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.ListFragment;
@@ -30,6 +32,7 @@ public class AplicacionesFragment extends ListFragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     List<Aplicacion> aplicaciones=null;
+    AdaptadorAplicaciones adaptador;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -80,8 +83,14 @@ public class AplicacionesFragment extends ListFragment {
 
     public void setAplicaciones(List<Aplicacion> aplicaciones) {
         this.aplicaciones = aplicaciones;
-        this.setListAdapter(new AdaptadorAplicaciones(getActivity(), this.aplicaciones));
+        adaptador=new AdaptadorAplicaciones(getActivity(), this.aplicaciones);
+        this.setListAdapter(adaptador);
     }
+
+    public AdaptadorAplicaciones getAdaptador() {
+        return adaptador;
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -97,4 +106,5 @@ public class AplicacionesFragment extends ListFragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
+
 }

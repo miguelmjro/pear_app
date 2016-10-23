@@ -42,7 +42,6 @@ public class LlamadoWS extends AsyncTask<String, Integer, String> {
                     sb.append(line + "\n");
                 }
                 st_json = sb.toString();
-                System.out.println(st_json);
             } catch (Exception e) {
                 e.printStackTrace();
             }

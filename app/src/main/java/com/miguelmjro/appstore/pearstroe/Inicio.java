@@ -1,12 +1,18 @@
 package com.miguelmjro.appstore.pearstroe;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.miguelmjro.appstore.pearstroe.Estructuras.Aplicacion;
 import com.miguelmjro.appstore.pearstroe.Fragmentos.AplicacionesFragment;
 import com.miguelmjro.appstore.pearstroe.json.Json;
+import com.miguelmjro.appstore.pearstroe.tareas.Descargas;
 
 import java.util.List;
 
@@ -14,6 +20,7 @@ public class Inicio extends FragmentActivity
        /* implements NavigationView.OnNavigationItemSelectedListener */ {
     String json = null;
     List<Aplicacion> apps;
+    AplicacionesFragment frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +35,17 @@ public class Inicio extends FragmentActivity
         }
         Json oJson = new Json(this.json);
         apps = oJson.getAplicaciones();
-        AplicacionesFragment frag=(AplicacionesFragment)getSupportFragmentManager().findFragmentById(R.id.list_fragment);
-        frag.setAplicaciones(apps);
+        frag=(AplicacionesFragment)getSupportFragmentManager().findFragmentById(R.id.list_fragment);
 //        TextView tv_json=(TextView)findViewById(R.id.respuesta);
 //        tv_json.setText(apps.get(1).getTitle()+"\n\n"+apps.get(1).getSummary());
 
         //navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        frag.setAplicaciones(apps);
     }
 
 //
