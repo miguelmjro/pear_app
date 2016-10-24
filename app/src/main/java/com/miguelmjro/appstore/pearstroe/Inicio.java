@@ -37,6 +37,7 @@ public class Inicio extends FragmentActivity
         Json oJson = new Json(this.json);
         apps = oJson.getAplicaciones();
         DAOBase daoBase=new DAOBase(this);
+        daoBase.cuentaCategoria();
         daoBase.actualizaAplicaciones(apps);
         daoBase.cuentaCategoria();
         frag=(AplicacionesFragment)getSupportFragmentManager().findFragmentById(R.id.list_fragment);

@@ -15,6 +15,7 @@ public abstract class DAOImagen implements BaseColumns{
     public static final String ID="id";
     public static final String ALTURA="altura";
     public static final String IMAGEN="imagen";
+    public static final String URL="url";
     public static final String APLICACION="id_app";//llave foranea
 
 

@@ -77,7 +77,8 @@ public class DAOBase extends SQLiteOpenHelper {
                 + DAOImagen._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + DAOImagen.ID + " TEXT NOT NULL,"
                 + DAOImagen.ALTURA + " INTEGER NOT NULL,"
-                + DAOImagen.IMAGEN + " BLOB NOT NULL,"
+                + DAOImagen.URL + " TEXT NOT NULL, "
+                + DAOImagen.IMAGEN + " BLOB,"
                 + DAOImagen.APLICACION + " INTEGER NOT NULL,"
                 + "UNIQUE (" + DAOImagen.ID + ")," +
                 "FOREIGN KEY("+DAOImagen.APLICACION+") REFERENCES "+
