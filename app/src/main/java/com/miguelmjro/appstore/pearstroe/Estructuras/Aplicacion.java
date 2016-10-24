@@ -4,6 +4,7 @@ package com.miguelmjro.appstore.pearstroe.Estructuras;
  * Created by miguel on 21/10/16.
  */
 public class Aplicacion {
+    long id;
     String name;
     String summary;
     String title;
@@ -12,8 +13,9 @@ public class Aplicacion {
     Artista artista;
     Precio precio;
 
-    public Aplicacion(String name, String summary, String title, Imagen[] imagen,
+    public Aplicacion(long id,String name, String summary, String title, Imagen[] imagen,
                       Categoria categoria, Artista artista, Precio precio) {
+        this.id=id;
         this.name = name;
         this.summary = summary;
         this.title = title;
@@ -77,5 +79,13 @@ public class Aplicacion {
 
     public void setPrecio(Precio precio) {
         this.precio = precio;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

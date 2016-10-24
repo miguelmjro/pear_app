@@ -23,8 +23,6 @@ public class Splash extends AppCompatActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        DAOBase base=new DAOBase(this);
-        base.cuentaAplicaciones();
         setContentView(R.layout.activity_splash);
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/

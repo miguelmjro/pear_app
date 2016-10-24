@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.miguelmjro.appstore.pearstroe.Estructuras.Aplicacion;
 import com.miguelmjro.appstore.pearstroe.Fragmentos.AplicacionesFragment;
+import com.miguelmjro.appstore.pearstroe.dbo.DAOBase;
 import com.miguelmjro.appstore.pearstroe.json.Json;
 import com.miguelmjro.appstore.pearstroe.tareas.Descargas;
 
@@ -35,6 +36,9 @@ public class Inicio extends FragmentActivity
         }
         Json oJson = new Json(this.json);
         apps = oJson.getAplicaciones();
+        DAOBase daoBase=new DAOBase(this);
+        daoBase.actualizaAplicaciones(apps);
+        daoBase.cuentaCategoria();
         frag=(AplicacionesFragment)getSupportFragmentManager().findFragmentById(R.id.list_fragment);
 //        TextView tv_json=(TextView)findViewById(R.id.respuesta);
 //        tv_json.setText(apps.get(1).getTitle()+"\n\n"+apps.get(1).getSummary());

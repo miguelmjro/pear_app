@@ -13,6 +13,9 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Vector;
 
+import static android.R.attr.id;
+import static java.lang.Long.getLong;
+
 /**
  * Created by miguel on 21/10/16.
  */
@@ -42,6 +45,7 @@ public class Json {
                 JSONObject js_summary= app.getJSONObject("summary");
                 String summary=js_summary.getString("label");
                 JSONObject js_title=app.getJSONObject("title");
+                long app_id=app.getJSONObject("id").getJSONObject("attributes").getLong("im:id");
                 String title=js_title.getString("label");
 
                 JSONObject js_price= app.getJSONObject("im:price");
@@ -73,7 +77,7 @@ public class Json {
                     int altura=js_imagen.getJSONObject("attributes").getInt("height");
                     imagen[j]=new Imagen(im_url,altura);
                 }
-                vec.add(new Aplicacion( name, summary, title, imagen, categoria, artista,  precio));
+                vec.add(new Aplicacion(app_id, name, summary, title, imagen, categoria, artista,  precio));
             }
         } catch (JSONException e) {
             e.printStackTrace();
